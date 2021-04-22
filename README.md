@@ -1,6 +1,6 @@
 # Individual-based modeling with R
 
-This repository holds the source materials used at https://SarahBauduin.github.io/formation_IBM_NetLogoR/
+This repository holds the source materials used at https://sarahbauduin.github.io/formation_IBM_NetLogoR/
  
 ## Reuse
 
