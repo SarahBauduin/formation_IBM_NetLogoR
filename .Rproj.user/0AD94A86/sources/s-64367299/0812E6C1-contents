@@ -1,0 +1,42 @@
+name: "Workshop_IBM_NetLogoR"
+title: "Individual-based modeling with NetLogoR"
+description: "A two-day workshop"
+output_dir: "docs"
+theme: "theme.css"
+include: [".nojekyll"]
+navbar:
+  source_url: true
+  left:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Slides"
+      menu:
+        - text: "Getting familiar with individual-based models (IBMs)"
+          href: slides/1_IBMs.pptx
+        - text: "Building IBMs with NetLogoR"
+          href: slides/2_NetLogoR.pptx
+        - text: "Debugging IBMs"
+          href: slides/3_Debug.pptx
+        - text: "Parameterizing IBMs"
+          href: slides/4_Parameter.pptx
+        - text: "Publishing IBMs"
+          href: slides/5_Publish.pptx
+        - text: "Coding on your own"
+          href: slides/7_Exercise.pptx
+    - text: "Practicals"
+      menu:
+        - text: "Forest model"
+          href: practicals/1_ForestModel.R
+        - text: "Population model"
+          href: practicals/2_PopulationModel.R
+        - text: "NetLogoR"
+          href: practicals/3_NetLogoR.R
+        - text: "Butterfly Hill topping"
+          href: practicals/4_ButterflyHilltopping.R
+        - text: "Exercise"
+          href: practicals/5_Exercise.R
+    - icon: fab fa-github
+      href: https://github.com/SarahBauduin/formation_IBM_NetLogoR
+output: distill::distill_article
+

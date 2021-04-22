@@ -1,0 +1,19 @@
+{
+  "articles": [
+    {
+      "path": "index.html",
+      "title": "Individual-based modeling with NetLogoR",
+      "description": "A two-day workshop",
+      "author": [],
+      "contents": "\nWho: Sarah Bauduin, Olivier Gimenez, Oksana Grente, Nina Santostasi\nWhen: June 21-22, 2021\nWhere: Zoom\nTimeline\nDay 1\nGetting familiar with individual-based models (IBMs)\nGetting familiar with NetLogoR\nUnderstanding simple models coded in NetLogoR\n\nDay 2\nUnderstanding more complex models coded in NetLogoR\nDebugging IBMs\nParameterizing IBMs\nPublishing IBMs\nCoding on your own\n\nRequirements\nInstall R and RStudio\nInstall the following R packages: NetLogoR, testthat. You can install them all at once by running the following code in the R command line:\n\n\ninstall.packages(c(\"NetLogoR\", \"testthat\"))\n\n\n\nYou need to be familiar with R. This workshop is not about learning how to code on R but how to use an R package in particular. For example, you need to be familiar with for loops and how to create function (even if they are very simple ones).\nFor any help before or after the workshop\nSarah Bauduin: sarah.bauduin@ofb.gouv.fr\n\n\n\n\n\n\n\n",
+      "last_modified": "2021-04-20T15:30:02+02:00"
+    },
+    {
+      "path": "LICENSE.html",
+      "author": [],
+      "contents": "\nMIT License\nCopyright (c) 2021 Olivier Gimenez\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n",
+      "last_modified": "2021-04-20T15:30:02+02:00"
+    }
+  ],
+  "collections": []
+}
