@@ -1,0 +1,26 @@
+{
+    "id": "B5F96EE1",
+    "path": "~/GitHub/formation_IBM_NetLogoR/practicals/3_NetLogoR.R",
+    "project_path": "practicals/3_NetLogoR.R",
+    "type": "r_source",
+    "hash": "2206160925",
+    "contents": "",
+    "dirty": false,
+    "created": 1619185703132.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "38,49",
+        "scrollLine": "22"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1619516936,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1619516936290,
+    "read_only": false,
+    "read_only_alternatives": []
+}
