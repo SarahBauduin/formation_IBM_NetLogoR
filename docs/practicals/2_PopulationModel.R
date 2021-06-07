@@ -67,6 +67,7 @@ mice <- turtlesOwn(turtles = mice,
                                  replace = TRUE))
 mice
 # Increment the mice age of 1
+# NLset() to assign or modify turtles' variable(s)
 mice <- NLset(turtles = mice, 
               agents = mice, 
               var = "age", 
@@ -75,6 +76,7 @@ mice <- NLset(turtles = mice,
 mice
 
 # Give mice a sex, 3 "male" and 3 "female"
+# turtlesOwn() to create a new turtles' variable and assign it a value
 mice <- turtlesOwn(turtles = mice, 
                    tVar = "sex", 
                    tVal = c(rep("male", 3), 
@@ -104,6 +106,8 @@ mice <- NLset(turtles = mice,
 ageTurtles <- of(agents = mice, 
                  var = c("who", "age"))
 library(doBy)
+# doBy needed to use which.maxn()
+# which.maxn() finds the n largest elements
 turtlesToKill <- ageTurtles[, "who"][which.maxn(ageTurtles[, "age"], n = 3)]
 mice <- die(turtles = mice, 
             who = turtlesToKill)

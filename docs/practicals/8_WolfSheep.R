@@ -36,18 +36,24 @@ points(wolves,
 
 ## Functions used in the for loop
 # Function with arguments "turtles" can be used by sheep and wolves
-move <- function(turtles) {
-  # Move one step in the direction between -50 and +50
+moveRandomly <- function(turtles, landscape, moveAngle) {
+  # Move one step in the direction between (- moveAngle) and (+ moveAngle)
   turtles <- right(turtles = turtles, 
                    angle = runif(n = NLcount(turtles), 
-                                 min = -50, 
-                                 max = 50))
-  turtles <- fd(world = grass, 
+                                 min = -moveAngle, 
+                                 max = moveAngle))
+  turtles <- fd(world = landscape, 
                 turtles = turtles, 
                 dist = 1, 
                 torus = TRUE)
   return(turtles)
 }
+# Example of moveRandomly
+wolves@.Data
+wolvesTest <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 0)
+wolvesTest@.Data # turtles have move one step forward, their heading has not changed 
+wolvesTest <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 180)
+wolvesTest@.Data # turtles have move one step in a new direction, their heading has changed 
 
 reproduce <- function(turtles) {
   # 10% of the individuals reproduce
@@ -68,20 +74,28 @@ reproduce <- function(turtles) {
   }
   return(turtles)
 }
+# Example of reproduce
+sheep
+sheepTest <- reproduce(turtles = sheep)
+sheepTest # new sheep added
 
-catchSheep <- function() {
-  # "who" numbers of sheep that are on the same patches as the wolves
-  sheepWolves <- turtlesOn(world = grass, 
-                           turtles = sheep, 
-                           agents = wolves, 
+catchSheep <- function(prey, predator, landscape) {
+  # "who" numbers of prey that are on the same patches as the predator
+  preypredator <- turtlesOn(world = landscape, 
+                           turtles = prey, 
+                           agents = predator, 
                            simplify = FALSE)
-  if(nrow(sheepWolves) != 0) {
-    sheepGrabbed <- oneOf(agents = sheepWolves) # grab one random sheep
-    sheep <- die(turtles = sheep, 
-                 who = sheepGrabbed) # kill the grabbed sheep
+  if(nrow(preypredator) != 0) {
+    preyGrabbed <- oneOf(agents = preypredator) # grab one random prey
+    prey <- die(turtles = prey, 
+                 who = preyGrabbed) # kill the grabbed prey
   }
-  return(sheep)# return the object updated in this function
+  return(prey)# return the object updated in this function
 }
+# Example of catchSheep
+sheep
+sheepTest <- catchSheep(prey = sheep, predator = wolves, landscape = grass)
+sheepTest # some sheep have died
 
 
 ## For loop
@@ -92,13 +106,13 @@ while((NLany(sheep) | NLany(wolves)) & time < maxTime) {
   
   # Sheep
   if (NLcount(sheep) != 0) {
-    sheep <- move(sheep)
-    sheep <- reproduce(sheep)
+    sheep <- moveRandomly(turtles = sheep, landscape = grass, moveAngle = 50)
+    sheep <- reproduce(turtles = sheep)
   }
   # Wolves
-  wolves <- move(wolves)
-  sheep <- catchSheep() # the result returned is the "sheep"
-  wolves <- reproduce(wolves)
+  wolves <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 50)
+  sheep <- catchSheep(prey = sheep, predator = wolves, landscape = grass) # the result returned is the prey (sheep)
+  wolves <- reproduce(turtles = wolves)
 
   time <- time + 1
   print(time) 
@@ -112,5 +126,5 @@ while((NLany(sheep) | NLany(wolves)) & time < maxTime) {
          pch = 16, 
          col = "black")
   
-  Sys.sleep(1)
+  Sys.sleep(.5)
 }

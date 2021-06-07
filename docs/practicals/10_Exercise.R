@@ -251,14 +251,14 @@ for(timeStep in 1:20){
          pch = 19, 
          col = of(agents = t1, 
                   var = "color"))
-  Sys.sleep(1)
+  Sys.sleep(.5)
   print(timeStep)
 }
 
 # Count the number of individuals (males and females or both) at each time step
-numInd <- numeric()
-numMale <- numeric()
-numFemale <- numeric()
+numInd <- rep(NA, 20)
+numMale <- rep(NA, 20)
+numFemale <- rep(NA, 20)
 t1 <- popInit 
 for(timeStep in 1:20){
   # Movement
@@ -289,20 +289,17 @@ for(timeStep in 1:20){
          pch = 19, 
          col = of(agents = t1, 
                   var = "color"))
-  Sys.sleep(1)
+  Sys.sleep(.5)
   print(timeStep)
   
   # Outputs
-  numInd <- c(numInd, 
-              NLcount(t1))
-  numMale <- c(numMale, 
-               NLcount(NLwith(agents = t1, 
-                              var = "sex", 
-                              val = "male")))
-  numFemale <- c(numFemale, 
-                 NLcount(NLwith(agents = t1, 
-                                var = "sex", 
-                                val = "female")))
+  numInd[timeStep] <- NLcount(t1)
+  numMale[timeStep] <- NLcount(NLwith(agents = t1,
+                                      var = "sex",
+                                      val = "male"))
+  numFemale[timeStep] <- NLcount(NLwith(agents = t1,
+                                        var = "sex",
+                                        val = "female"))
 }
 
 # Plot the number of individuals

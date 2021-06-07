@@ -64,7 +64,7 @@ for (time in 1:100) {
          col = of(agents = b3, 
                   var = "color"))
   
-  # Wait 1 second between each loop to see the butterflies moving
-  Sys.sleep(1)
+  # Wait 0.5 second between each loop to see the butterflies moving
+  Sys.sleep(.5)
 }
 

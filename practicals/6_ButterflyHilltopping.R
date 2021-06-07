@@ -8,11 +8,12 @@ hill <- createWorld(minPxcor = 1,
                     maxPxcor = 100, 
                     minPycor = 1, 
                     maxPycor = 100)
+plot(hill)
 # Define the patches values
 # Elevation decreases linearly with distance from the center of the hill
 # Hill center is at (30,30)
 # The hill is 100 units high
-elevation <- 100 - NLdist(agents = patches(hill), 
+elevation <- 100 - NLdist(agents = patches(hill), # distance between agents and agents2
                           agents2 = cbind(x = 30, 
                                           y = 30))
 # Assign the elevation values to the patches
@@ -64,7 +65,6 @@ for (time in 1:100) {
          col = of(agents = b3, 
                   var = "color"))
   
-  # Wait 1 second between each loop to see the butterflies moving
-  Sys.sleep(1)
+  # Wait 0.5 second between each loop to see the butterflies moving
+  Sys.sleep(.5)
 }
-

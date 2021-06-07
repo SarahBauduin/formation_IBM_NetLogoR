@@ -26,9 +26,15 @@ forest <- NLset(world = forest,
                              size = 25, 
                              replace = TRUE))
 
+# Run smoothly
 if(runTests){
   expect_true(all(of(agents = patches(forest), 
                      world = forest) <= 11))
+}
+# Give error
+if(runTests){
+  expect_true(all(of(agents = patches(forest), 
+                     world = forest) <= 2))
 }
 
 
@@ -69,9 +75,21 @@ mice <- hatch(turtles = mice,
               n = 1, 
               breed = "offspring")
 
+# Run smoothly
 if(runTests){
   expect_identical(of(agents = mice, 
                       var = "breed"), 
                    c(rep("mouse", 6), rep("offspring", 3)))
+}
+# Give error
+if(runTests){
+  expect_identical(of(agents = mice, 
+                      var = "breed"), 
+                   c(rep("mouse", 7), rep("offspring", 3)))
+}
+if(runTests){
+  expect_identical(of(agents = mice, 
+                      var = "breed"), 
+                   rep("mouse", 9))
 }
 

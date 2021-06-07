@@ -13,11 +13,18 @@ plot(forest)
 
 # Trees are represented by their age (or it can be their size)
 # Give a random age (between 1 and 10) to the 25 trees
+# NLset() to assign or modify pacthes' value
 forest <- NLset(world = forest, 
                 agents = patches(forest), 
                 val = sample(x = 1:10, 
                              size = 25, 
                              replace = TRUE))
+# sample() (not from NetLogoR) does random sample and permutations
+# Examples:
+sample(x = 1:10, size = 25, replace = TRUE)
+sample(x = 1:10, size = 5, replace = FALSE) # cannot take more than what there is available without replace
+sample(x = 10, size = 25, replace = TRUE) # carreful ! x = 10 means x = 1:10 !!! Always check x length
+
 plot(forest)
 # What's in forest
 forest
