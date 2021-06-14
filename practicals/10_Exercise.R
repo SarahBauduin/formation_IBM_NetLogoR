@@ -3,6 +3,7 @@
 ## Create a population of moving individuals where males and females have a different movement pattern
 library(NetLogoR)
 library(testthat)
+rm(list=ls()) # reset the R environment
 set.seed(1234) # same seed so that everybody has the same results
 
 # Create a world
@@ -251,7 +252,7 @@ for(timeStep in 1:20){
          pch = 19, 
          col = of(agents = t1, 
                   var = "color"))
-  Sys.sleep(.5)
+  Sys.sleep(1)
   print(timeStep)
 }
 
@@ -289,7 +290,7 @@ for(timeStep in 1:20){
          pch = 19, 
          col = of(agents = t1, 
                   var = "color"))
-  Sys.sleep(.5)
+  Sys.sleep(1)
   print(timeStep)
   
   # Outputs

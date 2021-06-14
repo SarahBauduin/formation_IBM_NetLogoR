@@ -1,6 +1,7 @@
 ## BUTTERFLY HILLTOPPING EXERCISE ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 set.seed(1234) # same seed so that everybody has the same results
 
 # Create a world with the desired extent
@@ -33,8 +34,8 @@ points(b3,
        col = of(agents = b3, 
                 var = "color"))
 
-# What's inside this loop will be iterated 100 times
-for (time in 1:100) {
+# What's inside this loop will be iterated 50 times
+for (time in 1:50) {
   
   # With a probability of 0.5
   if (runif(n = 1, min = 0, max = 1) < 0.5) {
@@ -64,7 +65,8 @@ for (time in 1:100) {
          col = of(agents = b3, 
                   var = "color"))
   
-  # Wait 0.5 second between each loop to see the butterflies moving
-  Sys.sleep(.5)
+  print(time)
+  # Wait 1 second between each loop to see the butterflies moving
+  Sys.sleep(1)
 }
 

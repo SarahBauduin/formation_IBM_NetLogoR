@@ -1,6 +1,7 @@
 ## NETLOGOR IN DETAILS ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 
 # World with a single value per patch: worldMatrix
 w1 <- createWorld(minPxcor = 0, 

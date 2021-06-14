@@ -1,6 +1,7 @@
 ## DEBUG ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 
 # Unit tests with testthat
 

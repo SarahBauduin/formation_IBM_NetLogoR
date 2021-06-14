@@ -1,6 +1,7 @@
 ## WOLF SHEEP PREDATION ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 set.seed(1234) # same seed so that everybody has the same results
 
 ## Setup
@@ -45,24 +46,37 @@ moveRandomly <- function(turtles, landscape, moveAngle) {
   turtles <- fd(world = landscape, 
                 turtles = turtles, 
                 dist = 1, 
-                torus = TRUE)
+                torus = TRUE) # the world is "wrapped": e.g., an individual leaving the landscape
+                              # on the right border reappears on the left border
   return(turtles)
 }
 # Example of moveRandomly
 wolves@.Data
-wolvesTest <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 0)
-wolvesTest@.Data # turtles have move one step forward, their heading has not changed 
-wolvesTest <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 180)
-wolvesTest@.Data # turtles have move one step in a new direction, their heading has changed 
+wolvesTest1 <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 0)
+wolvesTest1@.Data # turtles have move one step forward, their heading has not changed 
+wolvesTest2 <- moveRandomly(turtles = wolves, landscape = grass, moveAngle = 180)
+wolvesTest2@.Data # turtles have move one step in a new direction, their heading has changed 
+# Plot
+plot(grass)
+points(wolves, 
+       pch = 16, 
+       col = "black")
+points(wolvesTest1, 
+       pch = 16, 
+       col = "blue")
+points(wolvesTest2, 
+       pch = 16, 
+       col = "green")
+
 
 reproduce <- function(turtles) {
-  # 10% of the individuals reproduce
-  repro <- runif(n = NLcount(turtles), 
-                 min = 0, 
-                 max = 100) < 10
   whoTurtles <- of(agents = turtles, 
                    var = "who") # "who" (ID) of all turtles
-  reproWho <- whoTurtles[repro] # "who" of turtles which reproduce
+  
+  # 10% of the individuals reproduce
+  # "who" of turtles which reproduce
+  reproWho <- sample(x = whoTurtles,
+                     size = round(NLcount(turtles) * 0.1))
   reproInd <- turtle(turtles, 
                      who = reproWho) # turtles which reproduce
   
@@ -126,5 +140,5 @@ while((NLany(sheep) | NLany(wolves)) & time < maxTime) {
          pch = 16, 
          col = "black")
   
-  Sys.sleep(.5)
+  Sys.sleep(1)
 }

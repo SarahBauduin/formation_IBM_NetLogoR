@@ -1,6 +1,7 @@
 ## POPULATION MODEL ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 set.seed(1234) # same seed so that everybody has the same results
 
 # Create a landscape over which mice evolve
@@ -12,7 +13,7 @@ forest <- createWorld(minPxcor = 0,
 forest <- NLset(world = forest, 
                 agents = patches(forest), 
                 val = sample(x = 1:10, 
-                             size = 25, 
+                             size = NLcount(patches(forest)), 
                              replace = TRUE))
 plot(forest)
 
@@ -21,15 +22,15 @@ plot(forest)
 mice <- createTurtles(n = 6, 
                       breed = "mouse", 
                       world = forest)
-points(mice, 
-       pch = 19, 
-       col = of(agents = mice, 
-                var = "color")) # all mice are in the center of the forest
-
 # What's in mice
 mice
 # Access to the mice locations
 mice@.Data # but labels or factor variables are no longer visible
+
+points(mice, 
+       pch = 19, 
+       col = of(agents = mice, 
+                var = "color")) # all mice are in the center of the forest
 
 # Move the mice randomly
 # Their headings (directions) were randomly set when they were created
@@ -63,7 +64,7 @@ points(mice,
 mice <- turtlesOwn(turtles = mice, 
                    tVar = "age", 
                    tVal = sample(x = 1:5, 
-                                 size = 6, 
+                                 size = NLcount(mice), 
                                  replace = TRUE))
 mice
 # Increment the mice age of 1
@@ -101,6 +102,15 @@ mice <- NLset(turtles = mice,
                                      sex = sample(c("male", "female"),
                                                   size = 3, 
                                                   replace = TRUE)))
+# Change the "breed" of the offspring in mouse
+# So that at the next reproduction, only the newborns will be "offspring"
+mice <- NLset(turtles = mice, 
+              agents = NLwith(agents = mice, 
+                              var = "breed", 
+                              val = "offspring"), 
+              var = "breed",
+              val = "mouse")
+
 
 # Kill the 3 oldest mice
 ageTurtles <- of(agents = mice, 

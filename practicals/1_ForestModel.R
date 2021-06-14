@@ -1,6 +1,7 @@
 ## FOREST MODEL ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 set.seed(1234) # same seed so that everybody has the same results
 
 # Create a forest of 25 cells representing 25 plots where trees can grow
@@ -25,7 +26,8 @@ sample(x = 1:10, size = 25, replace = TRUE)
 sample(x = 1:10, size = 5, replace = FALSE) # cannot take more than what there is available without replace
 sample(x = 10, size = 25, replace = TRUE) # carreful ! x = 10 means x = 1:10 !!! Always check x length
 
-plot(forest)
+plot(forest, 
+     breaks = 0:15, col = rainbow(16)) # keep the same color scale for all plots
 # What's in forest
 forest
 
@@ -38,7 +40,8 @@ newAgeTrees <- ageTrees + 1
 forest <- NLset(world = forest, 
                 agents = patches(forest), 
                 val = newAgeTrees)
-plot(forest)
+plot(forest, 
+     breaks = 0:15, col = rainbow(16))
 
 # Cut 5 trees randomly
 # First, select 5 random patches
@@ -48,5 +51,6 @@ cutTrees <- nOf(agents = patches(forest),
 forest <- NLset(world = forest, 
                 agents = cutTrees, 
                 val = 0)
-plot(forest)
+plot(forest, 
+     breaks = 0:15, col = rainbow(16))
 

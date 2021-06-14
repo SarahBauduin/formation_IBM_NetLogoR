@@ -1,6 +1,7 @@
 ## AGENTMATRIX EXERCISE ## 
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 
 # Create a population of 10 individuals, 
 # all at the location [0;0] and 

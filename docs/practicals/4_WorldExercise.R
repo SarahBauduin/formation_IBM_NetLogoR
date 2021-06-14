@@ -1,6 +1,7 @@
 ## WORLDMATRIX AND WORLDARRAY EXERCISE ##
 
 library(NetLogoR)
+rm(list=ls()) # reset the R environment
 
 # Create a 3-layer world of 15 patches
 # Don't hesitate to use the help()
