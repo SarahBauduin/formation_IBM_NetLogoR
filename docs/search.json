@@ -6,13 +6,13 @@
       "description": "A two-day workshop",
       "author": [],
       "contents": "\r\nWho: Sarah Bauduin, Olivier Gimenez, Oksana Grente, Nina Santostasi\r\nWhen: June 21-22, 2021\r\nWhere: Zoom\r\nTimeline\r\nDay 1\r\nGetting familiar with individual-based models (IBMs)\r\nGetting familiar with NetLogoR\r\nUnderstanding simple models coded in NetLogoR\r\n\r\nDay 2\r\nUnderstanding more complex models coded in NetLogoR\r\nDebugging IBMs\r\nParameterizing IBMs\r\nPublishing IBMs\r\nCoding on your own\r\n\r\nRequirements\r\nInstall R and RStudio\r\nInstall the R packages: NetLogoR, testthat and doBy.\r\nYou need to be familiar with R. This workshop is not about learning how to code on R but how to use an R package in particular. For example, you need to be familiar with for loops and how to create function (even if they are very simple ones).\r\nFor any help before or after the workshop\r\nSarah Bauduin: sarah.bauduin@ofb.gouv.fr\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-15T10:28:54+02:00"
+      "last_modified": "2021-06-15T10:32:19+02:00"
     },
     {
       "path": "LICENSE.html",
       "author": [],
       "contents": "\r\nMIT License\r\nCopyright (c) 2021 Sarah Bauduin\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\r\n\r\n\r\n",
-      "last_modified": "2021-06-15T10:28:55+02:00"
+      "last_modified": "2021-06-15T10:32:20+02:00"
     }
   ],
   "collections": []

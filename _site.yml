@@ -45,7 +45,9 @@ navbar:
         - text: "Debug"
           href: practicals/9_Debug.R
         - text: "Exercise"
-          href: practicals/10_Exercise.R
+          href: practicals/10_ExerciseToDo.R
+        - text: "Exercise solutions"
+          href: practicals/11_ExerciseSolutions.R
     - icon: fab fa-github
       href: https://github.com/SarahBauduin/formation_IBM_NetLogoR
 output: distill::distill_article
