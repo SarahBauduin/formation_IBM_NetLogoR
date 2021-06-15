@@ -22,6 +22,8 @@ plot(forest)
 mice <- createTurtles(n = 6, 
                       breed = "mouse", 
                       world = forest)
+# When coordinates are not specified, individuals are created at the center of the world
+
 # What's in mice
 mice
 # Access to the mice locations

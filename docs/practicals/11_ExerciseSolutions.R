@@ -141,7 +141,7 @@ reproduction <- function(allInd, whoReproducingFemales){
   
   # Newborn inherit all the data from the parent (female) so we update the sex and color
   # Update the sex, breed and color of the offspring
-    # Change the sex randomly
+  # Change the sex randomly
   allInd <- NLset(turtles = allInd, 
                   agents = NLwith(agents = allInd, 
                                   var = "breed", 

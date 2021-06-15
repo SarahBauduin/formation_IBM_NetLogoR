@@ -66,3 +66,19 @@ set.seed(1234) # same seed so that everybody has the same results
 # Plot line color according to the male and female colors
 # Add a legend
 
+
+
+
+
+##########
+## HELP ##
+
+# List of NetLogoR functions used in 1/3:
+# createTurtles, createWorld, fd, moveTo, neighbors, NLcount, NLset, 
+# NLwith, oneOf, patchHere, randomXYcor, right, turtlesOwn, turtleSet
+
+# List of NetLogoR functions used in 2/3:
+# hatch, NLcount, NLset, NLwith, of, turtle, turtlesOn, turtleSet
+
+# List of NetLogoR functions used in 3/3:
+# NLcount, NLwith, of, turtleSet
