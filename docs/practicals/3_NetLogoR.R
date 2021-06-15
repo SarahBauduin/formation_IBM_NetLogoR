@@ -44,7 +44,7 @@ t1@.Data # individuals coordinates are visible but labels of factor variables ar
 # Create a new variable 
 t1 <- turtlesOwn(turtles = t1, 
                  tVar = "sex", 
-                 tVal = c("F", "F", "F","F", "F", "F", "M", "M","M", "M"))
+                 tVal = c("F", "F", "F", "F", "F", "F", "M", "M", "M", "M"))
 t1 
 # Create two types of individuals
 # Either create them all in the same agentMatrix

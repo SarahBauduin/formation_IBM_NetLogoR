@@ -82,6 +82,12 @@ if(runTests){
                       var = "breed"), 
                    c(rep("mouse", 6), rep("offspring", 3)))
 }
+if(runTests){
+  females <- NLwith(agents = mice, var = "sex", val = "female")
+  femalesAdult <- NLwith(agents = females, var = "breed", val = "mouse")
+  offspring <- NLwith(agents = mice, var = "breed", val = "offspring")
+  expect_identical(NLcount(femalesAdult), NLcount(offspring))
+}
 # Give error
 if(runTests){
   expect_identical(of(agents = mice, 
@@ -92,5 +98,10 @@ if(runTests){
   expect_identical(of(agents = mice, 
                       var = "breed"), 
                    rep("mouse", 9))
+}
+if(runTests){
+  females <- NLwith(agents = mice, var = "sex", val = "female")
+  offspring <- NLwith(agents = mice, var = "breed", val = "offspring")
+  expect_identical(NLcount(females), NLcount(offspring))
 }
 
