@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-Who: [Sarah Bauduin](https://www.sarahbauduin.fr/), [Olivier Gimenez](https://oliviergimenez.github.io/), [Oksana Grente](https://www.cefe.cnrs.fr/fr/recherche/bc/bbp/847-doc/3843-oksana-grente), [Nina Santostasi](https://phd.uniroma1.it/web/NINA-LUISA-SANTOSTASI_nP1089614_IT.aspx)  
+Who: [Sarah Bauduin](https://www.sarahbauduin.fr/), [Olivier Gimenez](https://oliviergimenez.github.io/), [Oksana Grente](https://www.cefe.cnrs.fr/fr/recherche/bc/bbp/847-doc/3843-oksana-grente), [Nina Santostasi](https://maioranolab.com/people/lab-members/ninasantostasi/)  
 When: June 21-22, 2021  
 Where: Zoom  
 <!-- Syllabus: [click here](syllabus.html)   -->
