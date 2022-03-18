@@ -2,21 +2,18 @@
 
 library(NetLogoR)
 library(testthat)
-rm(list=ls()) # reset the R environment
-set.seed(1234) # same seed so that everybody has the same results
 
 ##################
 ## EXERCISE 1/3 ##
+## Create a population with males and females
 
-## Create a population of moving individuals where males and females have a different movement pattern
-
-# Create a world of 10 x 10 patches with random values on each patch between 0 and 1
+# Create a world of 10 x 10 patches with random values on each patch 
+# between 0 and 1
 w1 <- createWorld(minPxcor = 1, 
                   maxPxcor = 10, 
                   minPycor = 1, 
                   maxPycor = 10, 
                   data = runif(n = 100))
-plot(w1)
 
 # Create a population with 15 males and 15 females
 # Random locations using randomXYcor()
@@ -31,16 +28,32 @@ t1 <- NLset(turtles = t1,
             agents = t1, 
             var = "color", 
             val = c(rep("red", 15), rep("black", 15)))
+
+# Plot the world
+plot(w1)
+# Plot males and females with their respective colors
 points(t1, 
        pch = 19, 
        col = of(agents = t1, 
                 var = "color"))
 
-popInit <- t1 # keep in memory for later
+# Count the number of individuals, of males and of females at each time step
+numInd <- NLcount(t1)
+numMale <- NLcount(NLwith(agents = t1,
+                          var = "sex",
+                          val = "male"))
+numFemale <- NLcount(NLwith(agents = t1,
+                            var = "sex",
+                            val = "female"))
 
-# Define 2 movement patterns/functions
 
-# Movement of females: in an random direction, move 2 patches at the time, in a wrapped world
+##################
+## EXERCISE 2/3 ##
+
+# Create 2 movement functions
+
+# Movement of females: in an random direction, move the distance of 2 patches 
+# at the time, in a wrapped world
 moveFemale <- function(movingInd){
   movingInd <- right(turtles = movingInd, 
                      angle = runif(n = NLcount(movingInd), 
@@ -53,7 +66,8 @@ moveFemale <- function(movingInd){
   return(movingInd)
 }
 
-# Movement of males: move to one of the 8 neighboring cells where there is a female on it, otherwise on one of the 8 neighboring cells randomly
+# Movement of males: move to one of the 8 neighboring cells where there is a 
+# female on it, otherwise on one of the 8 neighboring cells randomly
 moveMale <- function(movingInd){
   
   # What are the cells around the individuals?
@@ -80,19 +94,24 @@ moveMale <- function(movingInd){
     if(sum(allNeighborsFem[allNeighborsFem$id == each, "femaleHere"]) == 0){ 
 
       selectPatches <- rbind(selectPatches, 
-                             oneOf(as.matrix(allNeighborsFem[allNeighborsFem$id == each, c("pxcor", "pycor")])))
+                             oneOf(as.matrix(allNeighborsFem[allNeighborsFem$id == each, 
+                                                             c("pxcor", "pycor")])))
     
-    } else if(sum(allNeighborsFem[allNeighborsFem$id == each, "femaleHere"]) == 1){ # If there is one cell with female(s) on it, choose this cell
-
+    # If there is one cell with female(s) on it, choose this cell
+    } else if(sum(allNeighborsFem[allNeighborsFem$id == each, "femaleHere"]) == 1){ 
+      
       selectPatches <- rbind(selectPatches, 
                              allNeighborsFem[allNeighborsFem$id == each & 
-                                               allNeighborsFem$femaleHere == 1, c("pxcor", "pycor"), drop = FALSE])
+                                               allNeighborsFem$femaleHere == 1, 
+                                             c("pxcor", "pycor"), drop = FALSE])
     
-    } else { # If there are several cells with females on it, choose one cell among these ones randomly
+    } else { # If there are several cells with females on it, choose one cell among 
+             # these ones randomly
 
       selectPatches <- rbind(selectPatches, 
                              oneOf(as.matrix(allNeighborsFem[allNeighborsFem$id == each & 
-                                                               allNeighborsFem$femaleHere == 1, c("pxcor", "pycor")])))
+                                                               allNeighborsFem$femaleHere == 1, 
+                                                             c("pxcor", "pycor")])))
     }
   }
   
@@ -102,7 +121,8 @@ moveMale <- function(movingInd){
   return(movingInd)
 }
 
-# Create a loop of 20 times steps where all females move first then all the males
+# Create a loop of 20 times steps where all females move first 
+# then all the males
 for(timeStep in 1:20){
   newFemales <- moveFemale(NLwith(agent = t1, 
                                   var = "sex", 
@@ -114,16 +134,30 @@ for(timeStep in 1:20){
   expect_equal(NLcount(newFemales) + NLcount(newMales),
                NLcount(t1))
   
-  # Need to put back together the modified males and females for the next step (updated t1)
+  # Need to put back together the modified males and females for 
+  # the next step (updated t1)
   t1 <- turtleSet(newFemales, 
                   newMales)
+  
+  # Add plotting functions after all other functions
+  plot(w1)
+  # Plot males and females with their respective colors
+  points(t1, 
+         pch = 19, 
+         col = of(agents = t1, 
+                  var = "color"))
+  # Use Sys.sleep(1) to slow the function
+  Sys.sleep(1)
+  print(timeStep)
+  
 }
 
 
 ##################
-## EXERCISE 2/3 ##
+## EXERCISE 3/3 ##
 
-## Make reproduction happens when a male meets a female, with the production of one offspring
+## Make reproduction happens when a male meets a female, with the production 
+# of one offspring
 
 # Define a reproduction function where all females produce one offspring each
 reproduction <- function(allInd, whoReproducingFemales){
@@ -139,7 +173,8 @@ reproduction <- function(allInd, whoReproducingFemales){
                   n = 1, 
                   breed = "offspring")
   
-  # Newborn inherit all the data from the parent (female) so we update the sex and color
+  # Newborn inherit all the data from the parent (female) so we update 
+  # the sex and color
   # Update the sex, breed and color of the offspring
   # Change the sex randomly
   allInd <- NLset(turtles = allInd, 
@@ -159,7 +194,7 @@ reproduction <- function(allInd, whoReproducingFemales){
                                   val = "offspring"),
                   var = "breed", 
                   val = "turtle")
-  # Update the colors
+  # Update the colors according to the sex
   allInd <- NLset(turtles = allInd, 
                   agents = NLwith(agents = allInd, 
                                   var = "sex", 
@@ -194,65 +229,39 @@ encounter <- function(allInd){
                     var = "sex",
                     val = "female")
   # Females that are on patches where there are male 
-  femalesWithMales <- turtlesOn(world = w1, turtles = females, agents = males)
+  femalesWithMales <- turtlesOn(world = w1, turtles = females, 
+                                agents = males)
   # And keep in memory the ID of these females which will reproduce
   whoFemalesWithMales <- of(agents = femalesWithMales, var = "who")
   return(whoFemalesWithMales)
 }
 
-# Apply the reproduction function in this case
-t1 <- popInit 
+# Use the loop created before and add the reproduction before the plot functions
+# Count the number of individuals, of males and of females at each time step
+numInd <- rep(NA, 20)
+numMale <- rep(NA, 20)
+numFemale <- rep(NA, 20)
+# Loop 
 for(timeStep in 1:20){
-  # Use the movement loop written before
   newFemales <- moveFemale(NLwith(agent = t1, 
                                   var = "sex", 
                                   val = "female"))
   newMales <- moveMale(NLwith(agent = t1, 
                               var = "sex", 
                               val = "male"))
+  
   expect_equal(NLcount(newFemales) + NLcount(newMales),
                NLcount(t1))
   
-  # Need to put back together the modified males and females for the next step (updated t1)
+  # Need to put back together the modified males and females for 
+  # the next step (updated t1)
   t1 <- turtleSet(newFemales, 
                   newMales)
   
-  # After the movement, evaluate which females will reproduce (i.e., are on a patch with a male)
+  # After the movement, evaluate which females will reproduce 
+  # (i.e., are on a patch with a male)
   whoReproducingFemales <- encounter(t1)
   # If there are reproducing females, apply reproduction
-  if(length(whoReproducingFemales) > 0){
-    t1 <- reproduction(allInd = t1, 
-                       whoReproducingFemales = whoReproducingFemales)
-  }
-}
-
-
-##################
-## EXERCISE 3/3 ##
-
-## Plot and show the evolution of the population
-
-# Plot the world
-plot(w1)
-# Plot the individuals at each time step
-t1 <- popInit 
-for(timeStep in 1:20){
-  # Movement
-  newFemales <- moveFemale(NLwith(agent = t1, 
-                                  var = "sex", 
-                                  val = "female"))
-  newMales <- moveMale(NLwith(agent = t1, 
-                              var = "sex", 
-                              val = "male"))
-  expect_equal(NLcount(newFemales) + NLcount(newMales),
-               NLcount(t1))
-  
-  # Need to put back together the modified males and females for the next step (updated t1)
-  t1 <- turtleSet(newFemales, 
-                  newMales)
-  
-  # Reproduction
-  whoReproducingFemales <- encounter(t1)
   if(length(whoReproducingFemales) > 0){
     t1 <- reproduction(allInd = t1, 
                        whoReproducingFemales = whoReproducingFemales)
@@ -268,46 +277,8 @@ for(timeStep in 1:20){
   # Use Sys.sleep(1) to slow the function
   Sys.sleep(1)
   print(timeStep)
-}
-
-# Count the number of individuals, of males and of females at each time step
-numInd <- rep(NA, 20)
-numMale <- rep(NA, 20)
-numFemale <- rep(NA, 20)
-t1 <- popInit 
-for(timeStep in 1:20){
-  # Movement
-  newFemales <- moveFemale(NLwith(agent = t1, 
-                                  var = "sex", 
-                                  val = "female"))
-  newMales <- moveMale(NLwith(agent = t1, 
-                              var = "sex", 
-                              val = "male"))
-  expect_equal(NLcount(newFemales) + NLcount(newMales),
-               NLcount(t1))
   
-  # Need to put back together the modified males and females for the next step (updated t1)
-  t1 <- turtleSet(newFemales, 
-                  newMales)
-  
-  # Reproduction
-  whoReproducingFemales <- encounter(t1)
-  if(length(whoReproducingFemales) > 0){
-    popSize <- NLcount(t1)
-    t1 <- reproduction(allInd = t1, 
-                       whoReproducingFemales = whoReproducingFemales)
-  }
-  
-  # Plot
-  plot(w1)
-  points(t1,
-         pch = 19, 
-         col = of(agents = t1, 
-                  var = "color"))
-  Sys.sleep(1)
-  print(timeStep)
-  
-  # Increment this vector at each time step
+  # Increment the number of individuals, males and females
   numInd[timeStep] <- NLcount(t1)
   numMale[timeStep] <- NLcount(NLwith(agents = t1,
                                       var = "sex",
@@ -316,8 +287,9 @@ for(timeStep in 1:20){
                                         var = "sex",
                                         val = "female"))
 }
-
-# Plot the number of individuals (all, males and females) over time
+  
+# After the loop finished, plot the number of individuals 
+# (all, males and females) over time
 plot(1:20, 
      numInd, 
      ylim = c(0, max(numInd)), 

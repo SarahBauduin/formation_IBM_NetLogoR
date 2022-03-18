@@ -2,70 +2,86 @@
 
 library(NetLogoR)
 library(testthat)
-rm(list=ls()) # reset the R environment
-set.seed(1234) # same seed so that everybody has the same results
 
 ##################
 ## EXERCISE 1/3 ##
+## Create a population with males and females 
 
-## Create a population of moving individuals where males and females have a different movement pattern
-
-# Create a world of 10 x 10 patches with random values on each patch between 0 and 1
+# Create a world of 10 x 10 patches with random values on each patch 
+# between 0 and 1
 
 # Create a population with 15 males and 15 females
 # Random locations using randomXYcor()
 # Color of males = red, color of females = black
 
-# Define 2 movement patterns/functions
+# Plot the world
+# Plot males and females with their respective colors
 
-# Movement of females: in an random direction, move 2 patches at the time, in a wrapped world
-
-# Movement of males: move to one of the 8 neighboring cells where there is a female on it, otherwise on one of the 8 neighboring cells randomly
-# What are the cells around the individuals?
-# On which cells there are females?
-# If there are no females on the cells around, choose one cell randomly
-# If there is one cell with female(s) on it, choose this cell
-# If there are several cells with females on it, choose one cell among these ones randomly
-
-# Create a loop of 20 times steps where all females move first then all the males
+# Count the number of individuals, of males and of females at each time step
 
 
 ##################
 ## EXERCISE 2/3 ##
 
-## Make reproduction happens when a male meets a female, with the production of one offspring
+# Create 2 movement functions
 
-# Define a reproduction function where all females produce one offspring each
-# Update the sex, breed and color of the offspring
+# Movement of females: in an random direction, move the distance of 2 patches 
+# at the time, in a wrapped world
 
-# Identify when a male and a female are on a patch together
-# And keep in memory the ID of these females which will reproduce
+# Movement of males: move to one of the 8 neighboring cells where there is a 
+# female on it, otherwise on one of the 8 neighboring cells randomly
+# What are the cells around the individuals?
+# On which cells there are females?
+# If there are no females on the cells around, choose one cell randomly
+# If there is one cell with female(s) on it, choose this cell
+# If there are several cells with females on it, choose one cell among 
+# these ones randomly
+# Move the individuals to the chosen patches
 
-# Apply the reproduction function in this case
-# Use the movement loop written before
-# After the movement, evaluate which females will reproduce (i.e., are on a patch with a male)
-# If there are reproducing females, apply reproduction
+# Create a loop of 20 times steps where all females move first 
+# then all the males
+# Need to put back together the modified males and females for 
+# the next step (updated t1)
+# Add plotting functions after all other functions
+# Plot males and females with their respective colors
+# Use Sys.sleep(1) to slow the function
 
 
 ##################
 ## EXERCISE 3/3 ##
 
-## Plot and show the evolution of the population
+## Make reproduction happens when a male meets a female, with the production 
+# of one offspring
 
-# Plot the world
+# Define a reproduction function where all females produce one offspring each
+# Newborn inherit all the data from the parent (female) so we update 
+# the sex and color
+# Update the sex, breed and color of the offspring
+# Change the sex randomly
+# Give them the breed "turtle"
+# Update the colors according to the sex
 
-# Plot the individuals at each time step
+# Identify when a male and a female are on a patch together
+# Females that are on patches where there are male 
+# And keep in memory the ID of these females which will reproduce
+
+# Use the loop created before and add the reproduction before the plot functions
+# Count the number of individuals, of males and of females at each time step
+# Loop 
+# Need to put back together the modified males and females for 
+# the next step (updated t1)
+# After the movement, evaluate which females will reproduce 
+# (i.e., are on a patch with a male)
+# If there are reproducing females, apply reproduction
 # Add plotting functions after all other functions
 # Plot males and females with their respective colors
 # Use Sys.sleep(1) to slow the function
+# Increment the number of individuals, males and females
 
-# Count the number of individuals, of males and of females at each time step
-# Increment this vector at each time step
-
-# Plot the number of individuals (all, males and females) over time
+# After the loop finished, plot the number of individuals 
+# (all, males and females) over time
 # Plot line color according to the male and female colors
 # Add a legend
-
 
 
 
@@ -73,12 +89,42 @@ set.seed(1234) # same seed so that everybody has the same results
 ##########
 ## HELP ##
 
-# List of NetLogoR functions used in 1/3:
-# createTurtles, createWorld, fd, moveTo, neighbors, NLcount, NLset, 
-# NLwith, oneOf, patchHere, randomXYcor, right, turtlesOwn, turtleSet
+# 1/3
+# List of NetLogoR functions used:
+# createWorld, createTurtles, turtlesOwn, NLset, of, NLcount, NLwith
 
-# List of NetLogoR functions used in 2/3:
-# hatch, NLcount, NLset, NLwith, of, turtle, turtlesOn, turtleSet
+# 2/3
+# Create a function
+# moveFemale <- function(movingInd){
+#   
+#   return(movingInd)
+# }
+# and a function
+# moveMale <- function(movingInd){
+#   
+#   return(movingInd)
+# }
+# List of NetLogoR functions used in moveFemale:
+# right, NLcount, fd
+# List of NetLogoR functions used in moveMale:
+# neighbors, patchHere, NLwith, oneOf, moveTo
+# List of NetLogoR functions used in the loop:
+# NLwith, turtleSet, of
 
-# List of NetLogoR functions used in 3/3:
-# NLcount, NLwith, of, turtleSet
+# 3/3
+# Create a function
+# reproduction <- function(allInd, whoReproducingFemales){
+# 
+#   return(allInd)
+# }
+# and a function
+# encounter <- function(allInd){
+#   
+#   return(whoFemalesWithMales)
+# }
+# List of NetLogoR functions used in reproduction:
+# hatch, NLset, NLwith, NLcount
+# List of NetLogoR functions used in encounter:
+# NLwith, turtlesOn, of
+# List of NetLogoR functions used in the loop:
+# NLwith, turtleSet, of, NLcount
